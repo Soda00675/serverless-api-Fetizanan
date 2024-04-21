@@ -4,7 +4,7 @@ const cors = require('cors');
 
 // Import your Mongoose models and router
 const mongoose = require('mongoose'); 
-const router = require('./routes'); 
+const router = require('./functions/routes'); 
 
 const app = express();
 
