@@ -17,6 +17,21 @@ app.use(cors());
 app.use(express.json());
 //app.use(bodyParser.urlencoded({ extended: true })); // Commented out: Potential redundancy
 
+async function connectToMongoDB() {
+     try {
+         await mongoose.connect(process.env.MONGODB_URI || 'your_local_uri', {
+             useNewUrlParser: true,
+             useUnifiedTopology: true
+         });
+         console.log('MongoDB Connected');
+     } catch (err) {
+         console.error('MongoDB Connection Error:', err); 
+     }
+  }
+  
+  // Call your connection function
+  connectToMongoDB(); 
+  
 app.use('/api/.netlify/functions/', router);
 
 module.exports.handler = serverless(app);
