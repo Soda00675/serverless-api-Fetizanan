@@ -18,9 +18,10 @@ router.get('/:id', getAuthor, (req, res) => {
 });
 
 // CREATE AN AUTHOR
+// CREATE an author
 router.post('/', async (req, res) => {
   try {
-      // Validate request body
+    // Validate request body
     if (!req.body.name || !req.body.age) {
       return res.status(400).json({ message: 'Name and age are required' });
     }
@@ -31,12 +32,16 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ message: 'Author already exists' });
     }
 
-      const newAuthor = await author.save(); // `await` for save operation
-      res.status(201).json({ message: 'Author created successfully', author: newAuthor });
+    const author = new AuthorModel(req.body);
+    const newAuthor = await author.save();
+    
+    res.status(201)
+      .json({ message: 'Author created successfully', author: newAuthor });
   } catch (err) {
-      res.status(400).json({ message: err.message });
+     res.status(400).json({ message: err.message });
   }
 });
+
 
 // UPDATE an author
 router.patch('/:id', getAuthor, async (req, res) => {
