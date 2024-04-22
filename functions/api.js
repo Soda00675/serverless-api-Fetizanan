@@ -15,12 +15,7 @@ const dbLocalUrl = 'your_local_mongodb_connection_string';
 
 app.use(cors());
 app.use(express.json());
-// app.use(bodyParser.urlencoded({ extended: true })); // Commented out: Potential redundancy
-
-// Attempt MongoDB connection
-mongoose.connect(dbCloudUrl || dbLocalUrl, { useNewUrlParser: true, useUnifiedTopology: true })
-     .then(() => console.log('MongoDB Connected'))
-     .catch(err => console.log(err));
+//app.use(bodyParser.urlencoded({ extended: true })); // Commented out: Potential redundancy
 
 app.use('/api/.netlify/functions/', router);
 
