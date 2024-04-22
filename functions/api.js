@@ -17,11 +17,17 @@ app.use(cors());
 app.use(express.json());
 //app.use(bodyParser.urlencoded({ extended: true })); // Commented out: Potential redundancy
 
+
 // Attempt MongoDB connection
 mongoose.connect(dbCloudUrl || dbLocalUrl, { useNewUrlParser: true, useUnifiedTopology: true })
      .then(() => console.log('MongoDB Connected'))
      .catch(err => console.log(err));
 
 app.use('/api/.netlify/functions/', router);
+
+const port = process.env.PORT || 9000;
+app.listen(port, () =>
+  console.log(`Listening on port http://localhost:${port}`)
+);
 
 module.exports.handler = serverless(app);
