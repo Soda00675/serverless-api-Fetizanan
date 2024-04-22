@@ -19,22 +19,14 @@ router.get('/:id', getAuthor, (req, res) => {
 
 // CREATE AN AUTHOR
 router.post('/', async (req, res) => {
-    // Validate request body
-    if (!req.body.name || !req.body.age) {
-        return res.status(400).json({ message: 'Name and age are required' });
-    }
+  try {
+      // ... Your existing code to create an author
 
-    // Check if the author's name already exists
-    const existingAuthor = await AuthorModel.findOne({ name: req.body.name });
-    if (existingAuthor) {
-        return res.status(400).json({ message: 'Author already exists' });
-    }
-
-    const author = new AuthorModel(req.body);
-    const newAuthor = await author.save();
-    res.status(201).json({ message: 'Author created successfully', author: newAuthor });
-}).catch(err => {
-    res.status(400).json({ message: err.message });
+      const newAuthor = await author.save(); // `await` for save operation
+      res.status(201).json({ message: 'Author created successfully', author: newAuthor });
+  } catch (err) {
+      res.status(400).json({ message: err.message });
+  }
 });
 
 // UPDATE an author
