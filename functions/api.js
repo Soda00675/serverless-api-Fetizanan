@@ -18,7 +18,7 @@ app.use(express.json());
 //app.use(bodyParser.urlencoded({ extended: true })); // Commented out: Potential redundancy
 
 // Attempt MongoDB connection
-mongoose.connect(dbCloudUrl || dbLocalUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://fetizananjohnkenneth:Johnkenn23@cluster0.dmpyias.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true })
      .then(() => console.log('MongoDB Connected'))
      .catch(err => console.log(err));
 
