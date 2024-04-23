@@ -19,7 +19,6 @@ app.use(express.json());
 
 // Attempt MongoDB connection
 mongoose.connect('mongodb+srv://fetizananjohnkenneth:Johnkenn23@cluster0.dmpyias.mongodb.net/', {
-  // Remove useNewUrlParser and useUnifiedTopology options
 })
 .then(() => console.log('MongoDB Connected'))
 .catch(err => console.log(err));
