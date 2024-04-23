@@ -1,29 +1,28 @@
 const express = require('express');
 const serverless = require('serverless-http');
+const router = require('./routes/author');
+const mongoose = require('mongoose');
 const cors = require('cors');
 
-// Import your Mongoose models and router
-const mongoose = require('mongoose'); 
-const router = require('./routes/author'); 
-
-
 const app = express();
-
-// Potentially define MongoDB connection URLs for deployment and local usage
-const dbCloudUrl = 'your_cloud_mongodb_connection_string';
-const dbLocalUrl = 'your_local_mongodb_connection_string';
+const dbLocalUrl = 'mongodb://localhost:27017/express-mongo-api';
 
 app.use(cors());
 app.use(express.json());
-//app.use(bodyParser.urlencoded({ extended: true })); // Commented out: Potential redundancy
 
-// Attempt MongoDB connection
-mongoose.connect('mongodb+srv://fetizananjohnkenneth:Johnkenn23@cluster0.dmpyias.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
-})
-.then(() => console.log('MongoDB Connected'))
-.catch(err => console.log(err));
+app.use(express.urlencoded({ extended: true }));
 
+mongoose
+  .connect(process.env.MONGODB_URI || dbLocalUrl, {})
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((error) => console.error('Failed to connect to MongoDB', error));
 
-app.use('/api/.netlify/functions/', router);
+// app.use('/.netlify/functions/api', router);
+app.use('/api', router);
+
+const port = process.env.PORT || 5000;
+app.listen(port, () =>
+  console.log(`Listening on port http://localhost:${port}`)
+);
 
 module.exports.handler = serverless(app);
