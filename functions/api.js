@@ -4,8 +4,10 @@ const router = require('./routes/author');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+// Import your Mongoose models and router
 const app = express();
 const dbLocalUrl = 'mongodb://localhost:27017/express-mongo-api';
+const dbCloudUrl = 'mongodb+srv://fetizananjohnkenneth:<password>@cluster0.dmpyias.mongodb.net/';
 
 app.use(cors());
 app.use(express.json());
@@ -17,7 +19,8 @@ mongoose
   .then(() => console.log('Connected to MongoDB'))
   .catch((error) => console.error('Failed to connect to MongoDB', error));
 
-// app.use('/.netlify/functions/api', router);
+
+// Attempt MongoDB connection
 app.use('/api', router);
 
 const port = process.env.PORT || 5000;
