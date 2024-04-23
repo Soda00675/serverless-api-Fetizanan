@@ -18,7 +18,7 @@ app.use(express.json());
 //app.use(bodyParser.urlencoded({ extended: true })); // Commented out: Potential redundancy
 
 // Attempt MongoDB connection
-mongoose.connect('mongodb+srv://fetizananjohnkenneth:Johnkenn23@cluster0.dmpyias.mongodb.net/', {
+mongoose.connect('mongodb+srv://fetizananjohnkenneth:Johnkenn23@cluster0.dmpyias.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
 })
 .then(() => console.log('MongoDB Connected'))
 .catch(err => console.log(err));
