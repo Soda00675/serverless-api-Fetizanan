@@ -84,14 +84,6 @@ router.delete('/:id', getAuthor, async (req, res) => {
       res.status(500).json({ message: err.message });
     }
   }
-  router.get('/authors', async (req, res) => {
-    try {
-        const authors = await AuthorModel.find();
-        res.json(authors);
-    } catch (err) {
-        res.status(500).json({ message: err.message }); 
-    }
-});
   
   module.exports = router;
   
