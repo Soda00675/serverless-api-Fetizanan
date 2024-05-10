@@ -4,18 +4,15 @@ const {Schema} = mongoose;
 const authorSchema = new Schema({
   name:{
     type:String,
+    required:true
   },
   age:{
     type:Number,
+    required:true
   },
   username:String,
-  password:String,
-  films: [{ // Array of films
-    title: String,
-    releaseDate: Date
-    // Add more film-related fields as needed
-  }]
-
+  password:String
+  
 });
 
 authorSchema.pre('save',function(next){
