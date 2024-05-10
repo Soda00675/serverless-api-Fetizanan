@@ -10,6 +10,11 @@ const authorSchema = new Schema({
     type:Number,
     required:true
   },
+  email:{
+    type:email,
+    required:true
+  },
+
   username:String,
   password:String
   

@@ -22,7 +22,7 @@ router.get('/:id', getAuthor, (req, res) => {
 router.post('/', async (req, res) => {
   try {
     // Validate request body
-    if (!req.body.email || !req.body.name || !req.body.age) {
+    if (!req.body.email ||!req.body.name || !req.body.age) {
       return res.status(400).json({ message: 'Name and age are required' });
     } else if (!req.body.email.includes('@')) {
       return res.status(400).json({ message: 'Invalid email' });
