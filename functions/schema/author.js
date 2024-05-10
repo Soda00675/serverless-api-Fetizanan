@@ -11,7 +11,7 @@ const authorSchema = new Schema({
     required:true
   },
   email:{
-    type:email,
+    type:String,
     required:true
   },
 
